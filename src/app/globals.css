@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* Semantic colours. Components use these names, so dark mode only has to swap the variables. */
+@theme inline {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-on-brand: var(--on-brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-star: var(--star);
+  --color-danger: var(--danger);
+}
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --sunken: #eef0f3;
+  --ink: #111827;
+  --muted: #5b6474;
+  --line: #e2e5ea;
+  --brand: #0f766e;
+  --brand-hover: #115e59;
+  --on-brand: #ffffff;
+  --brand-soft: #e3f3f1;
+  --star: #b45309;
+  --danger: #b91c1c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0b0f14;
+    --surface: #141a22;
+    --sunken: #1b232d;
+    --ink: #e7eaef;
+    --muted: #9ba5b3;
+    --line: #27313d;
+    --brand: #2dd4bf;
+    --brand-hover: #5eead4;
+    --on-brand: #042f2c;
+    --brand-soft: #0f2c2a;
+    --star: #fbbf24;
+    --danger: #f87171;
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-bg text-ink antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+}
+
+/* Declared as utilities (not plain classes) so they can be combined with @apply and
+   overridden by regular utility classes in markup. */
+@utility page {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+}
+@utility card {
+  @apply rounded-2xl border border-line bg-surface;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+  @apply btn bg-brand text-on-brand hover:bg-brand-hover;
+}
+@utility btn-secondary {
+  @apply btn border border-line bg-surface text-ink hover:bg-sunken;
+}
+@utility input {
+  @apply w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-muted focus:border-brand focus:outline-none aria-invalid:border-danger;
+}
+@utility label {
+  @apply mb-1.5 block text-sm font-medium;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
