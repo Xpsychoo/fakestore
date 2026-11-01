@@ -6,7 +6,7 @@ const product = (id: number, category: string, price: number, rate: number, coun
   price,
   description: `Description of ${title}`,
   category,
-  image: `https://fakestoreapi.com/img/${id}.png`,
+  image: `/images/products/${id}.png`,
   rating: { rate, count },
 });
 

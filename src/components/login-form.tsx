@@ -3,7 +3,7 @@
 import { LogIn } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { login } from "@/lib/actions";
+import { login } from "@/lib/fakestore";
 import { setSession } from "@/lib/store";
 
 /** A real account from the Fake Store API's sample users. */

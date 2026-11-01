@@ -42,7 +42,7 @@ export function parseCart(value: unknown): CartItem[] | null {
       typeof i.price === "number" &&
       i.price >= 0 &&
       typeof i.image === "string" &&
-      i.image.startsWith("https://fakestoreapi.com/") &&
+      i.image.startsWith("/images/products/") &&
       Number.isInteger(i.quantity) &&
       i.quantity >= 1 &&
       i.quantity <= MAX_QUANTITY,

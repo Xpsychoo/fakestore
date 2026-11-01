@@ -2,15 +2,15 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV !== "production";
 
-// Product images are fetched and resized by Next's image optimizer, so the browser
-// only ever talks to this origin. Login and checkout go through server actions.
+// Product images are served from this site. The only outside origin is the Fake Store API,
+// which the browser calls directly for sign-in and checkout.
 const csp = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
-  `connect-src 'self'${isDev ? " ws:" : ""}`,
+  `connect-src 'self' https://fakestoreapi.com${isDev ? " ws:" : ""}`,
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -29,9 +29,6 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  images: {
-    remotePatterns: [{ protocol: "https", hostname: "fakestoreapi.com", pathname: "/img/**" }],
-  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

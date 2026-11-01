@@ -1,6 +1,4 @@
-import { login, placeOrder } from "@/lib/actions";
-
-vi.mock("server-only", () => ({}));
+import { login, placeOrder } from "@/lib/fakestore";
 
 const tokenFor = (sub: number) => `header.${Buffer.from(JSON.stringify({ sub, user: "johnd" })).toString("base64url")}.signature`;
 
@@ -62,7 +60,7 @@ describe("login", () => {
 });
 
 describe("placeOrder", () => {
-  const items = [{ id: 1, title: "Backpack", price: 109.95, image: "https://fakestoreapi.com/img/1.png", quantity: 2 }];
+  const items = [{ id: 1, title: "Backpack", price: 109.95, image: "/images/products/1.png", quantity: 2 }];
   const address = { name: "John Doe", email: "john@gmail.com", phone: "1-570-236-7033", street: "7682 New Road", city: "Kilcoole", zip: "12926" };
 
   it("posts the cart to the API", async () => {

@@ -4,7 +4,7 @@ import { Lock, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { placeOrder } from "@/lib/actions";
+import { placeOrder } from "@/lib/fakestore";
 import { formatPrice, totals } from "@/lib/cart";
 import { type AddressErrors, EMPTY_ADDRESS, validateAddress } from "@/lib/checkout";
 import { setCart, setOrders, useCart, useSession } from "@/lib/store";
